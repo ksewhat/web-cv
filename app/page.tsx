@@ -4,6 +4,7 @@ import { OverviewWidgets } from '@/components/OverviewWidgets'
 import { SkillStack } from '@/components/SkillStack'
 import { CareerSection } from '@/components/CareerSection'
 import { PortfolioSection } from '@/components/PortfolioSection'
+import { Footer } from '@/components/Footer'
 
 export default function Page() {
   return (
@@ -15,6 +16,7 @@ export default function Page() {
         <SkillStack />
         <CareerSection />
         <PortfolioSection />
+        <Footer />
       </main>
     </>
   )

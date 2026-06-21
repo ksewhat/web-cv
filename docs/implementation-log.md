@@ -363,3 +363,71 @@ Scroll to the bottom of the page, past the Career section, and confirm:
 ```bash
 npm run build   # zero TypeScript errors
 ```
+
+---
+
+## Phase 6 — Footer & Layout Spacing
+
+### What changed
+
+Added the Footer component and verified that inter-section spacing matches the reference throughout the full page.
+
+### Why it changed
+
+The reference (`reference/index.html` lines 547–553) defines a footer inside the main content wrapper, separated from the portfolio section by 56px of top margin and a `warm-400` border-top rule. The footer uses `profile.ts` contact data so it stays in sync if contact details change.
+
+### Files created
+
+| File | Purpose |
+|------|---------|
+| `components/Footer.tsx` | Copyright blurb (left) + email/GitHub chip links (right) from `data/profile.ts` |
+
+### Files modified
+
+| File | Change |
+|------|---------|
+| `app/page.tsx` | Added `<Footer />` import and usage after `<PortfolioSection />` inside `<main>` |
+
+### Spacing audit
+
+All spacing verified against the reference:
+
+| Gap | Component | Tailwind | px |
+|-----|-----------|----------|----|
+| Page top → Hero | `Hero` | `pt-[30px]` | 30 |
+| Hero → Overview widgets | `OverviewWidgets` | `mt-4` | 16 |
+| Widget row → Timeline | inside `OverviewWidgets` | `mt-4` | 16 |
+| Overview → Skill Stack | `SkillStack` | `mt-12` | 48 |
+| Skill Stack → Career | `CareerSection` | `mt-12` | 48 |
+| Career → Portfolio | `PortfolioSection` | `mt-12` | 48 |
+| Portfolio → Footer | `Footer` | `mt-14` | 56 |
+| Footer → page bottom | `<main>` | `pb-16` | 64 |
+
+All values match the reference exactly.
+
+### Design notes
+
+**Footer inside `<main>`** — the reference wraps all sections and the footer in a single container div. To preserve the same horizontal padding (`px-[clamp(1rem,4vw,2rem)]`) and `max-w-[1140px]` without a separate outer wrapper, the `<footer>` element is rendered as the last child of `<main>`. This is valid HTML (a `<footer>` element may appear inside `<main>` to represent the footer of that section).
+
+**Contact data from profile** — `profile.contact.email` and `profile.contact.github` are used directly, so the footer stays in sync with the rest of the CV if contact details change.
+
+**Copyright year** — `new Date().getFullYear()` evaluated at build time via Next.js static generation. No client-side JS required.
+
+**Link chip style** — `rounded-lg border border-warm-500 bg-chip px-[13px] py-[9px]` matches the reference's `border-radius:8px; padding:9px 13px; background:#ece9e3`. `hover:border-sage-500 hover:text-ink-500` matches `.link-chip:hover` in the reference CSS.
+
+### How to verify
+
+```bash
+npm run dev   # http://localhost:3000
+```
+
+Scroll to the very bottom of the page and confirm:
+
+- A thin `warm-400` horizontal rule appears below the portfolio cards with 56px of space above it.
+- Left side: `© 2026 김승은 · Seungeun Kim` on one line, `IT Engineer CV` on the next, in muted mono.
+- Right side: two chip links — `✉ jcqwhat@gmail.com` and `⌥ github.com/ksewhat` — with hover highlight (sage border + darker text).
+- 64px of breathing room below the footer before the page edge.
+
+```bash
+npm run build   # zero TypeScript errors
+```
