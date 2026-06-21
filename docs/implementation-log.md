@@ -78,10 +78,71 @@ The following sections from the design are deferred to later phases:
 - Currently-learning progress bars
 - Activity heatmap
 - Life timeline
-- Skill Stack section
 - Career section
 - Portfolio section
 - Footer
+
+---
+
+## Phase 2 — Skill Stack section
+
+### Overview
+
+Added the Skill Stack section (section 01 in the design). This phase also introduced two primitives — `Pill` and `SectionHeader` — that will be reused across all remaining sections.
+
+---
+
+### Files created
+
+```
+components/
+├── Pill.tsx            # pill badge — default (warm/chip) and highlight (sage green) variants
+├── SectionHeader.tsx   # numbered section heading + gradient rule, reusable across all sections
+├── SkillGroupCard.tsx  # single skill group: icon badge, title, pills, proficiency bar
+└── SkillStack.tsx      # section: header + full-width card + 3-column grid
+
+data/
+└── skills.ts           # SkillGroup type + four skill groups with items, proficiency, layout
+```
+
+### Files modified
+
+- **`app/page.tsx`** — added `<SkillStack />` below `<Hero />`
+
+---
+
+### Design decisions
+
+**`data/skills.ts` stays a plain `.ts` file** — icons are referenced by a string `iconId` (`'opensource' | 'server' | 'languages' | 'collaboration'`), not as JSX. The `CardIcon` function inside `SkillGroupCard.tsx` matches the id to the correct inline SVG. This keeps data files free of React imports.
+
+**`highlight` flag on `SkillItem`** — the reference renders three pills (Grafana, Prometheus, OpenTelemetry) in sage green instead of the default warm/chip style. Rather than encoding color directly in data, a boolean flag drives the `Pill` variant. This separates presentation from data.
+
+**`layout: 'full' | 'grid'`** — `SkillStack` separates the single full-width card from the 3-column grid without hardcoding indices. Adding a new group only requires adding it to `skills.ts` with the right `layout` value.
+
+**`Pill` is extracted as its own component** — it will appear again in the Career and Portfolio sections (tech tags). Keeping it standalone avoids duplicating the two-variant style logic.
+
+**`SectionHeader` is extracted as its own component** — every section (`기술스택`, `경력`, `포토폴리오`) uses the same `number · Korean title · English subtitle · gradient rule` pattern. One component handles all of them.
+
+**Proficiency bar** uses an inline `style` for the `width` (data-driven percentage) and a CSS gradient for the fill. The track color uses `bg-warm-400` from the Tailwind token set.
+
+---
+
+### How to verify
+
+```bash
+npm run dev   # http://localhost:3000
+```
+
+Scroll below the Hero section and confirm:
+
+- Section header shows `01  기술스택  Skill Stack` with a gradient rule to the right.
+- Full-width "오픈소스 운영" card shows all 11 pills. Grafana, Prometheus, and OpenTelemetry render in sage green; the rest in the default warm style.
+- Three cards below in a responsive grid: 서버 운영체제, 프로그래밍 언어, 협업·도구 — each with the correct icon, pills, and a proficiency bar.
+- Hovering over a default pill shifts its border to sage green. Hovering over a card shifts its border to `warm-400`.
+
+```bash
+npm run build   # should produce zero TypeScript errors
+```
 
 ---
 
