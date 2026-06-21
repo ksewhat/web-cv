@@ -1,11 +1,17 @@
 export const profile = {
   initials: 'SK',
+  
+  avatar: {
+    src: '/images/profile/avatar.jpg',
+    alt: 'Seungeun Kim profile image',
+  },
+
   name: { ko: '김승은', en: 'Seungeun Kim' },
   location: { ko: '서울 구로구', en: 'Seoul' },
-  titles: ['IT Engineer', 'DevOps', 'Fullstack'],
+  titles: ['IT Engineer', 'AI Specialist', 'DevOps'],
   bio: {
-    ko: 'APM·인프라 모니터링 체계 구축과 운영. 관측 가능성으로 시스템을 읽고 개선합니다.',
-    en: 'Building & operating observability and infra-monitoring systems.',
+    ko: '기술을 서비스로 실현하며, 안정적인 IT 환경과 더 나은 사용자 경험을 만들어갑니다.',
+    en: 'Turning technology into reliable services and better user experiences.',
   },
   contact: {
     phone: { label: '010-6618-2028', href: 'tel:01066182028' },

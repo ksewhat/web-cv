@@ -1,4 +1,5 @@
 import { profile } from '@/data/profile'
+import Image from "next/image"
 
 export function Hero() {
   return (
@@ -12,7 +13,7 @@ export function Hero() {
 }
 
 function IdentityCard() {
-  const { initials, name, location, titles, bio, contact } = profile
+  const { initials, avatar, name, location, titles, bio, contact } = profile
 
   return (
     <div className="flex flex-col gap-[18px] rounded-[18px] border border-warm-500 p-[26px] shadow-card-lg"
@@ -20,16 +21,27 @@ function IdentityCard() {
 
       {/* Avatar + name */}
       <div className="flex items-center gap-[18px]">
-        <div
-          className="flex h-20 w-20 flex-none items-center justify-content-center rounded-2xl border border-warm-500 font-mono text-2xl font-bold tracking-wider text-sage-600"
-          style={{
-            background: 'repeating-linear-gradient(135deg, #e6e2da, #e6e2da 7px, #efece6 7px, #efece6 14px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {initials}
+        <div className="relative h-20 w-20 flex-none overflow-hidden rounded-2xl border border-warm-500 bg-chip">
+          {avatar?.src ? (
+            <Image
+              src={avatar.src}
+              alt={avatar.alt}
+              fill
+              sizes="80px"
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div
+              className="flex h-full w-full items-center justify-center font-mono text-2xl font-bold tracking-wider text-sage-600"
+              style={{
+                background:
+                  'repeating-linear-gradient(135deg, #e6e2da, #e6e2da 7px, #efece6 7px, #efece6 14px)',
+              }}
+            >
+              {initials}
+            </div>
+          )}
         </div>
         <div>
           <p className="mb-[9px] font-mono text-[12px] font-medium text-ink-100">
