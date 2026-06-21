@@ -178,3 +178,63 @@ npm run build
 ```
 
 A clean build produces no errors and outputs a static route at `/`.
+
+---
+
+## Phase 3 — Career Section
+
+### What changed
+
+Added the `경력 / Career` section (section `02`) below Skill Stack. It displays one career entry — ㈜ 와치텍 — with a company header, tenure badge, three metric tiles, and three bullet points.
+
+### Why it changed
+
+The reference (`reference/index.html` lines 416–470) defines a structured career card with distinct sub-regions. Each sub-region is isolated into its own component to keep `CareerCard` readable and to allow the bullet pattern to be used independently if additional sections need it later.
+
+### Files created
+
+| File | Purpose |
+|------|---------|
+| `data/career.ts` | Types (`MetricTile`, `BulletItem`, `CareerEntry`) + `careerEntries` array |
+| `components/CareerBullet.tsx` | Green dot with glow ring + title + optional mono tag + description |
+| `components/CareerCard.tsx` | Full card: header row, divider, metric tiles grid, bullet list |
+| `components/CareerSection.tsx` | Section wrapper — `SectionHeader` + one `CareerCard` per entry |
+
+### Files modified
+
+| File | Change |
+|------|--------|
+| `app/page.tsx` | Added `<CareerSection />` import and usage after `<SkillStack />` |
+
+### Design notes
+
+**`CareerEntry` data shape** — `company`, `role`, and `tenure` each carry both `ko` and `en` strings. `metrics` and `bullets` are typed arrays so new entries require no component changes.
+
+**Tenure badge** — styled identically to the AVAILABLE badge in `TopBar`: `border-sage-300 bg-sage-500/[.14] text-sage-600 rounded-lg`. This is not a `Pill` (which uses `rounded-full`); the badge is `rounded-lg` per the reference.
+
+**Bullet glow ring** — the 9 × 9 px sage dot uses `boxShadow: '0 0 0 4px rgba(143,166,142,.16)'` as an inline style. This soft ring is not expressible as a Tailwind utility without a custom token, so an inline style was used to match the reference exactly.
+
+**Metric tile grid** — `repeat(auto-fit, minmax(110px, 1fr))` in an inline style, consistent with the `SkillGroupCard` grid pattern. Three tiles at 110 px minimum fill the card naturally at all widths.
+
+**`SectionHeader` reuse** — `<SectionHeader number="02" title="경력" subtitle="Career" />` confirms the component handles all sections without modification.
+
+**No `Pill` usage** — the Career section in the reference contains no pill-shaped tags; all badges are rectangular (`rounded-lg` or `rounded-[10px]`).
+
+### How to verify
+
+```bash
+npm run dev   # http://localhost:3000
+```
+
+Scroll below the Skill Stack section and confirm:
+
+- Section header shows `02  경력  Career` with the gradient rule.
+- A single card for ㈜ 와치텍 appears with `WATCHTEC` in muted mono beside it.
+- Top-right of the card shows `3년 5개월 · 3y 5m` in the sage badge.
+- A horizontal divider separates the header from the body.
+- Three metric tiles: `BMT/POC`, `Build→Ops`, `QA` — each with a Korean + English sub-label.
+- Three bullet points with a 9 × 9 px sage dot and a soft glow ring, followed by the Korean title, optional mono tag, and an English description.
+
+```bash
+npm run build   # zero TypeScript errors
+```
