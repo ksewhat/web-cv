@@ -5,7 +5,8 @@ export type CompetencyItem = {
 }
 
 export const competencyItems: CompetencyItem[] = [
-  { label: { ko: '모니터링', en: 'APM' }, score: 95, color: '#8fa68e' },
-  { label: { ko: '인프라', en: 'DevOps' }, score: 88, color: '#93acbd' },
-  { label: { ko: '백엔드', en: 'Backend' }, score: 80, color: '#c6a394' },
+  { label: { ko: 'SW 엔지니어링', en: 'SW Engineering' }, score: 95, color: '#8fa68e' },
+  { label: { ko: '오저버빌리티', en: 'Observability' }, score: 88, color: '#93acbd' },
+  { label: { ko: '프로젝트 관리', en: 'PM' }, score: 80, color: '#c6a394' },
+  { label: { ko: 'AI 엔지니어링', en: 'AI Engineering' }, score: 60, color: '#d8c98f' },
 ]

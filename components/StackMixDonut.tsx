@@ -44,7 +44,7 @@ export function StackMixDonut() {
             ))}
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-sans text-[22px] font-bold leading-none text-ink-500">14+</span>
+            <span className="font-sans text-[22px] font-bold leading-none text-ink-500">20+</span>
             <span className="mt-[3px] font-mono text-[9px] font-medium text-ink-50">stacks</span>
           </div>
         </div>

@@ -37,11 +37,11 @@ export function CompetencyGauges() {
         </div>
         <span className="font-mono text-[10px] font-medium text-ink-50">self-rated</span>
       </div>
-      <div className="flex flex-1 flex-wrap items-center justify-around gap-[6px]">
+      <div className="grid flex-1 grid-cols-1 place-items-center gap-y-7 sm:grid-cols-2 sm:gap-x-8">
         {competencyItems.map((item) => (
-          <div key={item.label.en} className="flex flex-col items-center gap-[9px]">
+          <div key={item.label.en} className="flex min-w-0 flex-col items-center gap-[9px] text-center">
             <Gauge score={item.score} color={item.color} />
-            <div className="text-center font-sans text-[11px] font-medium leading-[1.3] text-ink-100">
+            <div className="min-h-[34px] text-center font-sans text-[11px] font-medium leading-[1.3] text-ink-100">
               {item.label.ko}
               <br />
               {item.label.en}

@@ -11,7 +11,7 @@ export const profile = {
   titles: ['IT Engineer', 'AI Specialist', 'DevOps'],
   bio: {
     ko: '기술을 서비스로 실현하며, 안정적인 IT 환경과 더 나은 사용자 경험을 만들어갑니다.',
-    en: 'Turning technology into reliable services and better user experiences.',
+    en: 'Turning technology into reliable services and better user experiences. ',
   },
   contact: {
     phone: { label: '010-6618-2028', href: 'tel:01066182028' },
@@ -27,7 +27,7 @@ export const profile = {
     },
     {
       label: { ko: '스택', en: 'Stacks' },
-      value: '14+',
+      value: '20+',
       detail: null,
       variant: 'bars' as const,
     },
