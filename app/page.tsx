@@ -3,6 +3,7 @@ import { Hero } from '@/components/Hero'
 import { OverviewWidgets } from '@/components/OverviewWidgets'
 import { SkillStack } from '@/components/SkillStack'
 import { CareerSection } from '@/components/CareerSection'
+import { PortfolioSection } from '@/components/PortfolioSection'
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
         <OverviewWidgets />
         <SkillStack />
         <CareerSection />
+        <PortfolioSection />
       </main>
     </>
   )

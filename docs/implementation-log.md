@@ -305,3 +305,61 @@ Scroll just below the Hero section and confirm:
 ```bash
 npm run build   # zero TypeScript errors
 ```
+
+---
+
+## Phase 5 — Portfolio Section
+
+### What changed
+
+Added the `포토폴리오 / Portfolio` section (section `03`) at the bottom of the page, after the Career section. It contains three project case-study cards in a responsive 3-column grid.
+
+### Why it changed
+
+The reference (`reference/index.html` lines 472–544) defines a Portfolio section with a grid of case-study cards. Each card has a placeholder image area, title, description, rectangular tech tags, and a metric row separated by a top border.
+
+### Files created
+
+| File | Purpose |
+|------|---------|
+| `data/portfolio.ts` | `Project[]` with `ProjectMetric`, `ImagePlaceholder` types; three project entries |
+| `components/ProjectCard.tsx` | Card shell with hatched image placeholder, CASE badge, tech chips, metric row |
+| `components/PortfolioSection.tsx` | Section wrapper — `SectionHeader` + comment line + responsive project grid |
+
+### Files modified
+
+| File | Change |
+|------|---------|
+| `app/page.tsx` | Added `<PortfolioSection />` import and usage after `<CareerSection />` |
+
+### Design notes
+
+**Tech tags are NOT `Pill`** — project tags use `border-radius:6px` (rectangular chip), not the `999px` pill shape. `Pill` stays for skill stack items only. The tag style matches the reference exactly: `rounded-[6px] border border-warm-500 px-[8px] py-[5px] font-mono text-[11px]`.
+
+**Image placeholder** — the 140px hatched area uses the same `repeating-linear-gradient(135deg, #e6e2da, #e6e2da 9px, #efece6 9px, #efece6 18px)` pattern as the avatar in `Hero.tsx`. The CASE badge reuses the sage chip style from `LifeTimeline.tsx` (WORK tag badge).
+
+**Comment line spacing** — `SectionHeader` carries `mb-[22px]` by design. The portfolio section adds a `// case-study cards` mono comment between the header and the grid. The comment uses `-mt-[14px]` to achieve an effective 8px gap from the header (matching the reference's `margin:0 0 8px`), then `mb-5` (20px) before the grid.
+
+**`SectionHeader` unchanged** — no props added; spacing override is applied in `PortfolioSection` only, not in the shared component.
+
+**Card hover** — `hover:border-sage-500` matches the reference's `.proj-card:hover { border-color: #8fa68e }`.
+
+### How to verify
+
+```bash
+npm run dev   # http://localhost:3000
+```
+
+Scroll to the bottom of the page, past the Career section, and confirm:
+
+- Section header shows `03  포토폴리오  Portfolio` with the gradient rule.
+- A muted mono comment line `// case-study cards` appears just below.
+- Three cards in a responsive grid (stack on narrow viewports):
+  - **CASE 01** — "Open-Source Observability Collaboration Lab" with `DASHBOARD SCREENSHOT` placeholder, tags (OpenTelemetry, Prometheus, Grafana, Kubernetes), metrics (−40% MTTR · 8+ dashboards).
+  - **CASE 02** — "Log Incident Watcher" with `ARCHITECTURE DIAGRAM`, tags (Kafka, Logstash, OpenSearch, Python), metrics (5M+ logs/day · 99.9% uptime).
+  - **CASE 03** — "Web CV Portfolio" with `PROJECT IMAGE`, tags (Next.js, TypeScript, Tailwind CSS), metrics (100 Lighthouse · < 1s TTI).
+- Hovering a card shifts its border to sage green.
+
+```bash
+npm run build   # zero TypeScript errors
+```
