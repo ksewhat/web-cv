@@ -238,3 +238,70 @@ Scroll below the Skill Stack section and confirm:
 ```bash
 npm run build   # zero TypeScript errors
 ```
+
+---
+
+## Phase 4 — Overview Dashboard Widgets
+
+### What changed
+
+Added five Overview dashboard widgets between the Hero section and the Skill Stack section. They occupy "Row 2" of the Overview layout: a 4-column auto-fit grid (Competency Gauges, Stack Mix Donut, Currently Learning, Activity Heatmap) followed by a full-width Life Timeline card.
+
+### Why it changed
+
+The reference (`reference/index.html` lines 134–298) defines these widgets as part of the Overview section, positioned between the identity / stat tiles (Hero) and the numbered sections (01 Skill Stack, 02 Career). Each widget is self-contained and visualises a distinct profile dimension: raw skill scores, stack distribution, active learning, recent activity, and biographical events.
+
+### Files created
+
+| File | Purpose |
+|------|---------|
+| `data/competency.ts` | `CompetencyItem[]` — label (ko/en), score 0–100, hex color |
+| `data/stackMix.ts` | `StackSegment[]` — label, percentage, hex color for the donut |
+| `data/learning.ts` | `LearningItem[]` — label + progress percentage |
+| `data/timeline.ts` | `TimelineEvent[]` with `TimelineTag` union (`LIFE \| EDU \| WORK`) |
+| `data/heatmap.ts` | `heatmapCells: number[]` — 112 precomputed values (16 weeks × 7 days, 0–4) |
+| `components/CompetencyGauges.tsx` | SVG circular gauges; arc math computed from score (circumference = 2π × 35) |
+| `components/StackMixDonut.tsx` | SVG donut with cumulative `strokeDashoffset` segments; SVG rotated −90° |
+| `components/LearningBars.tsx` | Progress bar rows with gradient fill and `● live` badge |
+| `components/ActivityHeatmap.tsx` | CSS grid (7 rows, `grid-auto-flow:column`) from precomputed array; 5 color levels |
+| `components/LifeTimeline.tsx` | Horizontal timeline with per-tag dot colors and badge styles (LIFE/EDU/WORK) |
+| `components/OverviewWidgets.tsx` | Assembles the 4-card grid + timeline, inserted between Hero and SkillStack |
+
+### Files modified
+
+| File | Change |
+|------|---------|
+| `app/page.tsx` | Added `<OverviewWidgets />` import and usage between `<Hero />` and `<SkillStack />` |
+
+### Design notes
+
+**Gauge SVG math** — circumference = 2π × 35 = 219.9. Each arc uses `strokeDasharray="${(score/100 × C).toFixed(1)} ${C.toFixed(1)}"` and `transform="rotate(-90 42 42)"` to start at the top. Values match the reference exactly (95% → 208.9, 88% → 193.5, 80% → 175.9).
+
+**Donut SVG** — circumference = 2π × 40 = 251.3. The whole SVG element is CSS-rotated −90°. Each segment uses a `strokeDashoffset` equal to the negative sum of all preceding dashes. Offsets are computed cumulatively in `StackMixDonut.tsx` before render (no side-effects in JSX).
+
+**Heatmap** — precomputed array in `data/heatmap.ts` (not DOM manipulation). The grid uses `gridTemplateRows: repeat(7, 1fr)` and `gridAutoFlow: column` so cells flow column-major (week columns, day rows). Five level colors hardcoded as inline styles because they don't map to existing Tailwind tokens.
+
+**Timeline connector rule** — `bg-warm-400` (`#e2ddd5`), positioned absolute `top-[8px]` so it aligns with the centre of the 16 px dot. The dot uses `bg-warm-100` matching the card background, with a coloured border and box-shadow glow ring (inline style, no Tailwind equivalent).
+
+**Tag badge colours** — LIFE (terra tones), EDU (sky tones), WORK (sage tones). All inline-styled because the alpha-tinted backgrounds and unique border shades are not in the token set.
+
+**No client-side JS added** — all 5 components are server-rendered static SVG / HTML. The KST clock in TopBar remains the only live behaviour.
+
+### How to verify
+
+```bash
+npm run dev   # http://localhost:3000
+```
+
+Scroll just below the Hero section and confirm:
+
+- **Competency Gauges**: Three circular arcs — sage (95), sky-blue (88), terra-pink (80) — with Korean + English labels beneath each.
+- **Stack Mix Donut**: Tricolour donut showing "14+" in the centre, with three legend rows and percentage labels.
+- **Currently Learning**: Three gradient progress bars (Kubernetes 심화 80%, OpenTelemetry 70%, Go 65%) with "● live" badge.
+- **Activity Heatmap**: 16-column × 7-row grid of green-shaded squares with Less / More legend.
+- **Life Timeline**: Full-width card with four events (LIFE terra, EDU sky ×2, WORK sage), horizontal rule connector, coloured dots, and tag badges.
+- Existing Skill Stack and Career sections remain unchanged below.
+
+```bash
+npm run build   # zero TypeScript errors
+```
