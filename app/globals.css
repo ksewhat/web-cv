@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --page-bg: #e7e4de;
+}
+
+html,
+body {
+  background-color: var(--page-bg);
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(60, 55, 48, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 55, 48, 0.035) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px;
+}
+
+::selection {
+  background: rgba(143, 166, 142, 0.28);
+  color: #2f2c27;
+}

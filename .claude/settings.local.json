@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(python3 -m http.server 8765)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765/)",
+      "Bash(pip install *)",
+      "Bash(python3 -m playwright install chromium --with-deps)",
+      "Bash(pip3 install *)",
+      "Bash(apt-cache show *)"
+    ]
+  }
+}

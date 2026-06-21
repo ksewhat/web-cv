@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seungeun Kim — IT Engineer CV</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background-color: #e7e4de; }
+  body {
+    font-family: Pretendard, system-ui, sans-serif;
+    color: #3b3833;
+    background-image:
+      linear-gradient(rgba(60,55,48,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,55,48,.035) 1px, transparent 1px);
+    background-size: 36px 36px, 36px 36px;
+  }
+  ::selection { background: rgba(143,166,142,.28); color: #2f2c27; }
+  a { color: inherit; text-decoration: none; }
+
+  @keyframes sc-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(143,166,142,.5); }
+    70%  { box-shadow: 0 0 0 7px rgba(143,166,142,0); }
+    100% { box-shadow: 0 0 0 0 rgba(143,166,142,0); }
+  }
+
+  .pill, .card-hover, .proj-card, .link-chip { transition: border-color 0.15s ease; }
+  .pill:hover      { border-color: #8fa68e !important; }
+  .card-hover:hover{ border-color: #c2bcb0 !important; }
+  .proj-card:hover { border-color: #8fa68e !important; }
+  .link-chip:hover { border-color: #8fa68e !important; color: #2f2c27 !important; }
+</style>
+</head>
+<body>
+
+<!-- Grain overlay (inline SVG so feTurbulence filter works cross-browser) -->
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+     style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#grain)" opacity="0.042"/>
+</svg>
+
+<!-- ===== TOP BAR ===== -->
+<div style="position:sticky;top:0;z-index:60;background:rgba(231,228,222,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #dcd7cf;">
+  <div style="max-width:1140px;margin:0 auto;padding:11px clamp(16px,4vw,32px);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="width:9px;height:9px;border-radius:50%;background:#8fa68e;animation:sc-pulse 2.4s infinite;flex:none;"></span>
+      <span style="font:600 14px/1 'JetBrains Mono',monospace;letter-spacing:-.01em;color:#3b3833;">seungeun<span style="color:#6e8a6c;">.dev</span></span>
+      <span style="font:500 12px/1 'JetBrains Mono',monospace;color:#a39d92;">/ engineer / overview</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span style="display:inline-flex;align-items:center;gap:8px;font:500 12px/1 'JetBrains Mono',monospace;color:#7a756c;">
+        <span style="color:#a39d92;">KST</span>
+        <span id="kst-clock" style="color:#5b574f;">--:--:--</span>
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:7px;font:600 11px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;background:rgba(143,166,142,.14);border-radius:999px;padding:7px 11px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#8fa68e;animation:sc-pulse 2.4s infinite;flex:none;"></span>AVAILABLE
+      </span>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:1140px;margin:0 auto;padding:0 clamp(16px,4vw,32px) 64px;position:relative;z-index:1;">
+
+  <!-- ============ SECTION: OVERVIEW ============ -->
+  <section style="padding-top:30px;">
+
+    <!-- ROW 1: identity + quick-stat tiles -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:16px;">
+
+      <!-- WIDGET: identity -->
+      <div style="background:linear-gradient(160deg,#f7f5f1,#efece6);border:1px solid #dcd7cf;border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:18px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 16px 32px -20px rgba(60,55,48,.22);">
+        <div style="display:flex;gap:18px;align-items:center;">
+          <div style="width:80px;height:80px;flex:none;border-radius:16px;border:1px solid #dcd7cf;background:repeating-linear-gradient(135deg,#e6e2da,#e6e2da 7px,#efece6 7px,#efece6 14px);display:flex;align-items:center;justify-content:center;font:700 25px/1 'JetBrains Mono',monospace;color:#6e8a6c;letter-spacing:1px;">SK</div>
+          <div>
+            <div style="font:500 12px/1 'JetBrains Mono',monospace;color:#8a857c;margin-bottom:9px;">서울 구로구 · Seoul</div>
+            <h1 style="margin:0;font:700 clamp(28px,5vw,38px)/1 Pretendard,sans-serif;letter-spacing:-.02em;color:#2f2c27;">김승은</h1>
+            <div style="margin-top:6px;font:600 15px/1 'JetBrains Mono',monospace;color:#8a857c;">Seungeun Kim</div>
+          </div>
+        </div>
+        <div style="font:600 14px/1.5 'JetBrains Mono',monospace;color:#5b574f;">IT Engineer<span style="color:#9bb59a;"> · </span>DevOps<span style="color:#9bb59a;"> · </span>Fullstack</div>
+        <p style="margin:0;font:400 14px/1.6 Pretendard,sans-serif;color:#7a756c;">APM·인프라 모니터링 체계 구축과 운영. 관측 가능성으로 시스템을 읽고 개선합니다. <span style="color:#a39d92;">Building &amp; operating observability and infra-monitoring systems.</span></p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="link-chip" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:8px;padding:8px 11px;background:#ece9e3;">📍 구로구, 서울</span>
+          <a href="tel:01066182028" class="link-chip" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:8px;padding:8px 11px;background:#ece9e3;">010-6618-2028</a>
+          <a href="mailto:jcqwhat@gmail.com" class="link-chip" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:8px;padding:8px 11px;background:#ece9e3;">jcqwhat@gmail.com</a>
+          <a href="https://github.com/ksewhat" target="_blank" rel="noopener" class="link-chip" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:8px;padding:8px 11px;background:#ece9e3;">github.com/ksewhat</a>
+        </div>
+      </div>
+
+      <!-- WIDGET: quick-stat tiles (2×2) -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;">
+        <!-- Experience -->
+        <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+          <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;text-transform:uppercase;letter-spacing:.06em;">경력 · Experience</div>
+          <div style="font:700 28px/1 Pretendard,sans-serif;color:#2f2c27;">3<span style="font-size:15px;color:#8a857c;">y</span> 5<span style="font-size:15px;color:#8a857c;">m</span></div>
+          <svg width="100%" height="24" viewBox="0 0 100 24" preserveAspectRatio="none"><polyline points="0,20 14,16 28,17 42,10 56,12 70,6 84,8 100,3" fill="none" stroke="#8fa68e" stroke-width="2"/></svg>
+        </div>
+        <!-- Stacks -->
+        <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+          <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;text-transform:uppercase;letter-spacing:.06em;">스택 · Stacks</div>
+          <div style="font:700 28px/1 Pretendard,sans-serif;color:#2f2c27;">14<span style="font-size:15px;color:#6e8a6c;">+</span></div>
+          <div style="display:flex;gap:4px;align-items:flex-end;height:24px;">
+            <span style="flex:1;background:#c3d3c1;height:60%;border-radius:2px;"></span>
+            <span style="flex:1;background:#9bb59a;height:90%;border-radius:2px;"></span>
+            <span style="flex:1;background:#8fa68e;height:45%;border-radius:2px;"></span>
+            <span style="flex:1;background:#c3d3c1;height:75%;border-radius:2px;"></span>
+            <span style="flex:1;background:#9bb59a;height:100%;border-radius:2px;"></span>
+            <span style="flex:1;background:#8fa68e;height:55%;border-radius:2px;"></span>
+          </div>
+        </div>
+        <!-- Role -->
+        <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+          <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;text-transform:uppercase;letter-spacing:.06em;">역할 · Role</div>
+          <div style="font:700 21px/1.05 Pretendard,sans-serif;color:#2f2c27;">APM 파트장</div>
+          <div style="font:500 12px/1 'JetBrains Mono',monospace;color:#8a857c;">Part Lead · 대리</div>
+        </div>
+        <!-- Mindset -->
+        <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+          <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;text-transform:uppercase;letter-spacing:.06em;">지향 · Mindset</div>
+          <div style="font:700 28px/1 Pretendard,sans-serif;color:#2f2c27;">24<span style="color:#9bb59a;">/</span>7</div>
+          <div style="font:500 12px/1 'JetBrains Mono',monospace;color:#8a857c;">uptime-first</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 2: gauges + donut + learning + heatmap -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,158px),1fr));gap:14px;margin-top:16px;align-items:stretch;">
+
+      <!-- WIDGET: competency gauges -->
+      <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:18px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div style="font:700 13px/1 Pretendard,sans-serif;color:#2f2c27;">역량 <span style="font:500 11px 'JetBrains Mono',monospace;color:#8a857c;">Competency</span></div>
+          <span style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;">self-rated</span>
+        </div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:space-around;gap:6px;flex-wrap:wrap;">
+          <!-- APM 95% -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+            <div style="position:relative;width:70px;height:70px;">
+              <svg width="70" height="70" viewBox="0 0 84 84">
+                <circle cx="42" cy="42" r="35" fill="none" stroke="#e2ddd5" stroke-width="7"/>
+                <circle cx="42" cy="42" r="35" fill="none" stroke="#8fa68e" stroke-width="7" stroke-linecap="round" stroke-dasharray="208.9 219.9" transform="rotate(-90 42 42)"/>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 17px/1 Pretendard,sans-serif;color:#2f2c27;">95</div>
+            </div>
+            <div style="text-align:center;font:500 11px/1.3 Pretendard,sans-serif;color:#8a857c;">모니터링<br>APM</div>
+          </div>
+          <!-- DevOps 88% -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+            <div style="position:relative;width:70px;height:70px;">
+              <svg width="70" height="70" viewBox="0 0 84 84">
+                <circle cx="42" cy="42" r="35" fill="none" stroke="#e2ddd5" stroke-width="7"/>
+                <circle cx="42" cy="42" r="35" fill="none" stroke="#93acbd" stroke-width="7" stroke-linecap="round" stroke-dasharray="193.5 219.9" transform="rotate(-90 42 42)"/>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 17px/1 Pretendard,sans-serif;color:#2f2c27;">88</div>
+            </div>
+            <div style="text-align:center;font:500 11px/1.3 Pretendard,sans-serif;color:#8a857c;">인프라<br>DevOps</div>
+          </div>
+          <!-- Backend 80% -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+            <div style="position:relative;width:70px;height:70px;">
+              <svg width="70" height="70" viewBox="0 0 84 84">
+                <circle cx="42" cy="42" r="35" fill="none" stroke="#e2ddd5" stroke-width="7"/>
+                <circle cx="42" cy="42" r="35" fill="none" stroke="#c6a394" stroke-width="7" stroke-linecap="round" stroke-dasharray="175.9 219.9" transform="rotate(-90 42 42)"/>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 17px/1 Pretendard,sans-serif;color:#2f2c27;">80</div>
+            </div>
+            <div style="text-align:center;font:500 11px/1.3 Pretendard,sans-serif;color:#8a857c;">백엔드<br>Backend</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIDGET: stack-mix donut -->
+      <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:18px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div style="font:700 13px/1 Pretendard,sans-serif;color:#2f2c27;">스택 구성 <span style="font:500 11px 'JetBrains Mono',monospace;color:#8a857c;">Stack mix</span></div>
+          <span style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;">focus</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;">
+          <div style="position:relative;width:112px;height:112px;flex:none;">
+            <svg width="112" height="112" viewBox="0 0 108 108" style="transform:rotate(-90deg);">
+              <circle cx="54" cy="54" r="40" fill="none" stroke="#e6e2da" stroke-width="14"/>
+              <circle cx="54" cy="54" r="40" fill="none" stroke="#8fa68e" stroke-width="14" stroke-dasharray="138.2 251.3" stroke-dashoffset="0"/>
+              <circle cx="54" cy="54" r="40" fill="none" stroke="#93acbd" stroke-width="14" stroke-dasharray="62.8 251.3" stroke-dashoffset="-138.2"/>
+              <circle cx="54" cy="54" r="40" fill="none" stroke="#c6a394" stroke-width="14" stroke-dasharray="50.3 251.3" stroke-dashoffset="-201"/>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <span style="font:700 22px/1 Pretendard,sans-serif;color:#2f2c27;">14+</span>
+              <span style="font:500 9px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:3px;">stacks</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px;font:500 12px/1 'JetBrains Mono',monospace;">
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:3px;background:#8fa68e;flex:none;"></span><span style="color:#5b574f;">오픈소스 운영</span><span style="color:#a39d92;margin-left:auto;padding-left:8px;">55%</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:3px;background:#93acbd;flex:none;"></span><span style="color:#5b574f;">언어</span><span style="color:#a39d92;margin-left:auto;padding-left:8px;">25%</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:10px;height:10px;border-radius:3px;background:#c6a394;flex:none;"></span><span style="color:#5b574f;">협업 도구</span><span style="color:#a39d92;margin-left:auto;padding-left:8px;">20%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIDGET: currently learning -->
+      <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:18px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div style="font:700 13px/1 Pretendard,sans-serif;color:#2f2c27;">지금 <span style="font:500 11px 'JetBrains Mono',monospace;color:#8a857c;">Currently learning</span></div>
+          <span style="font:500 10px/1 'JetBrains Mono',monospace;color:#6e8a6c;">● live</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:13px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;font:500 12px/1 'JetBrains Mono',monospace;margin-bottom:7px;"><span style="color:#5b574f;">Kubernetes 심화</span><span style="color:#a39d92;">80%</span></div>
+            <div style="height:6px;border-radius:3px;background:#e7e3db;overflow:hidden;"><div style="width:80%;height:100%;background:linear-gradient(90deg,#a9bfa8,#8fa68e);border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font:500 12px/1 'JetBrains Mono',monospace;margin-bottom:7px;"><span style="color:#5b574f;">OpenTelemetry</span><span style="color:#a39d92;">70%</span></div>
+            <div style="height:6px;border-radius:3px;background:#e7e3db;overflow:hidden;"><div style="width:70%;height:100%;background:linear-gradient(90deg,#a9bfa8,#8fa68e);border-radius:3px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font:500 12px/1 'JetBrains Mono',monospace;margin-bottom:7px;"><span style="color:#5b574f;">Go</span><span style="color:#a39d92;">65%</span></div>
+            <div style="height:6px;border-radius:3px;background:#e7e3db;overflow:hidden;"><div style="width:65%;height:100%;background:linear-gradient(90deg,#a9bfa8,#8fa68e);border-radius:3px;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIDGET: activity heatmap -->
+      <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:18px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+          <div style="font:700 13px/1 Pretendard,sans-serif;color:#2f2c27;">활동 <span style="font:500 11px 'JetBrains Mono',monospace;color:#8a857c;">Activity</span></div>
+          <div style="display:flex;align-items:center;gap:6px;font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;">
+            Less
+            <span style="width:11px;height:11px;border-radius:2px;background:#e3ded5;border:1px solid #dcd7cf;flex:none;"></span>
+            <span style="width:11px;height:11px;border-radius:2px;background:#cdd9c8;flex:none;"></span>
+            <span style="width:11px;height:11px;border-radius:2px;background:#b3c9ad;flex:none;"></span>
+            <span style="width:11px;height:11px;border-radius:2px;background:#97b691;flex:none;"></span>
+            <span style="width:11px;height:11px;border-radius:2px;background:#7ba074;flex:none;"></span>
+            More
+          </div>
+        </div>
+        <div id="heatmap" style="flex:1;min-height:77px;display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;"></div>
+      </div>
+    </div>
+
+    <!-- WIDGET: life timeline (full width) -->
+    <div style="margin-top:16px;background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+        <div style="font:700 13px/1 Pretendard,sans-serif;color:#2f2c27;">라이프 타임라인 <span style="font:500 11px 'JetBrains Mono',monospace;color:#8a857c;">Life Timeline</span></div>
+        <span style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;">event log · 4 records</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:0;margin-top:20px;">
+        <!-- Born -->
+        <div style="position:relative;padding:0 14px 6px;">
+          <div style="position:absolute;left:0;right:0;top:8px;height:2px;background:#e2ddd5;"></div>
+          <span style="position:relative;display:block;width:16px;height:16px;border-radius:50%;background:#f4f2ee;border:2px solid #c6a394;box-shadow:0 0 0 4px rgba(198,163,148,.16);"></span>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;">
+            <span style="align-self:flex-start;font:600 9px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:#b07f6c;border:1px solid #ddc3b8;background:rgba(198,163,148,.16);border-radius:5px;padding:4px 7px;">LIFE</span>
+            <div style="font:600 13px/1 'JetBrains Mono',monospace;color:#7a756c;">1994.02.27</div>
+            <div style="font:700 14px/1.35 Pretendard,sans-serif;color:#2f2c27;">출생</div>
+            <div style="font:400 12px/1.4 Pretendard,sans-serif;color:#8a857c;">Born</div>
+          </div>
+        </div>
+        <!-- Baruch College -->
+        <div style="position:relative;padding:0 14px 6px;">
+          <div style="position:absolute;left:0;right:0;top:8px;height:2px;background:#e2ddd5;"></div>
+          <span style="position:relative;display:block;width:16px;height:16px;border-radius:50%;background:#f4f2ee;border:2px solid #93acbd;box-shadow:0 0 0 4px rgba(147,172,189,.16);"></span>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;">
+            <span style="align-self:flex-start;font:600 9px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:#5f7e92;border:1px solid #c0cfd8;background:rgba(147,172,189,.16);border-radius:5px;padding:4px 7px;">EDU</span>
+            <div style="font:600 13px/1 'JetBrains Mono',monospace;color:#7a756c;">2015 – 2018</div>
+            <div style="font:700 14px/1.35 Pretendard,sans-serif;color:#2f2c27;">Baruch College</div>
+            <div style="font:400 12px/1.4 Pretendard,sans-serif;color:#8a857c;">Business Administration</div>
+          </div>
+        </div>
+        <!-- Sejong Univ -->
+        <div style="position:relative;padding:0 14px 6px;">
+          <div style="position:absolute;left:0;right:0;top:8px;height:2px;background:#e2ddd5;"></div>
+          <span style="position:relative;display:block;width:16px;height:16px;border-radius:50%;background:#f4f2ee;border:2px solid #93acbd;box-shadow:0 0 0 4px rgba(147,172,189,.16);"></span>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;">
+            <span style="align-self:flex-start;font:600 9px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:#5f7e92;border:1px solid #c0cfd8;background:rgba(147,172,189,.16);border-radius:5px;padding:4px 7px;">EDU</span>
+            <div style="font:600 13px/1 'JetBrains Mono',monospace;color:#7a756c;">2019 – 2022</div>
+            <div style="font:700 14px/1.35 Pretendard,sans-serif;color:#2f2c27;">세종대학교 졸업</div>
+            <div style="font:400 12px/1.4 Pretendard,sans-serif;color:#8a857c;">경영학과 · Business Admin.</div>
+          </div>
+        </div>
+        <!-- Watchtec -->
+        <div style="position:relative;padding:0 14px 6px;">
+          <div style="position:absolute;left:0;right:0;top:8px;height:2px;background:#e2ddd5;"></div>
+          <span style="position:relative;display:block;width:16px;height:16px;border-radius:50%;background:#f4f2ee;border:2px solid #8fa68e;box-shadow:0 0 0 4px rgba(143,166,142,.18);"></span>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;">
+            <span style="align-self:flex-start;font:600 9px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:#6e8a6c;border:1px solid #b9cdb7;background:rgba(143,166,142,.16);border-radius:5px;padding:4px 7px;">WORK</span>
+            <div style="font:600 13px/1 'JetBrains Mono',monospace;color:#7a756c;">2023.01 – 2025.05</div>
+            <div style="font:700 14px/1.35 Pretendard,sans-serif;color:#2f2c27;">㈜ 와치텍</div>
+            <div style="font:400 12px/1.4 Pretendard,sans-serif;color:#8a857c;">APM 파트장 · 재직</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 01: SKILL STACK ============ -->
+  <section style="margin-top:48px;">
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 22px;">
+      <span style="font:600 13px/1 'JetBrains Mono',monospace;color:#6e8a6c;">01</span>
+      <h2 style="margin:0;font:700 clamp(22px,3.5vw,30px)/1.1 Pretendard,sans-serif;letter-spacing:-.01em;color:#2f2c27;">기술스택</h2>
+      <span style="font:500 14px/1 'JetBrains Mono',monospace;color:#8a857c;">Skill Stack</span>
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,#d2ccc2,transparent);min-width:40px;"></span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+      <!-- Open-Source Ops (full width) -->
+      <div class="card-hover" style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="display:flex;align-items:center;gap:11px;">
+          <span style="width:36px;height:36px;border-radius:9px;background:#ece9e3;border:1px solid #dcd7cf;display:flex;align-items:center;justify-content:center;flex:none;">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6e8a6c" stroke-width="1.7" stroke-linejoin="round">
+              <path d="M12 3 L20 7.5 V16.5 L12 21 L4 16.5 V7.5 Z"/><path d="M4 7.5 L12 12 L20 7.5"/><path d="M12 12 V21"/>
+            </svg>
+          </span>
+          <div>
+            <div style="font:700 15px/1.1 Pretendard,sans-serif;color:#2f2c27;">오픈소스 운영</div>
+            <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;margin-top:3px;">Open-Source Operation</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Docker</span>
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Kubernetes</span>
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Elasticsearch / OpenSearch</span>
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Logstash</span>
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Kafka</span>
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">MariaDB</span>
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Tomcat</span>
+          <span style="font:500 12px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;border-radius:999px;padding:7px 11px;background:rgba(143,166,142,.14);">Grafana</span>
+          <span style="font:500 12px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;border-radius:999px;padding:7px 11px;background:rgba(143,166,142,.14);">Prometheus</span>
+          <span style="font:500 12px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;border-radius:999px;padding:7px 11px;background:rgba(143,166,142,.14);">OpenTelemetry</span>
+          <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">OpenStack</span>
+        </div>
+        <div style="height:5px;border-radius:3px;background:#e7e3db;overflow:hidden;margin-top:auto;">
+          <div style="width:94%;height:100%;background:linear-gradient(90deg,#a9bfa8,#8fa68e);border-radius:3px;"></div>
+        </div>
+      </div>
+
+      <!-- 3-column smaller skill cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;">
+        <!-- Server OS -->
+        <div class="card-hover" style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+          <div style="display:flex;align-items:center;gap:11px;">
+            <span style="width:36px;height:36px;border-radius:9px;background:#ece9e3;border:1px solid #dcd7cf;display:flex;align-items:center;justify-content:center;flex:none;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6e8a6c" stroke-width="1.7">
+                <rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/>
+                <circle cx="7" cy="7" r="0.7" fill="#6e8a6c"/><circle cx="7" cy="17" r="0.7" fill="#6e8a6c"/>
+              </svg>
+            </span>
+            <div>
+              <div style="font:700 15px/1.1 Pretendard,sans-serif;color:#2f2c27;">서버 운영체제</div>
+              <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;margin-top:3px;">Server OS</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Linux / Unix</span>
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Windows</span>
+          </div>
+          <div style="height:5px;border-radius:3px;background:#e7e3db;overflow:hidden;margin-top:auto;">
+            <div style="width:82%;height:100%;background:linear-gradient(90deg,#a9bfa8,#8fa68e);border-radius:3px;"></div>
+          </div>
+        </div>
+        <!-- Languages -->
+        <div class="card-hover" style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+          <div style="display:flex;align-items:center;gap:11px;">
+            <span style="width:36px;height:36px;border-radius:9px;background:#ece9e3;border:1px solid #dcd7cf;display:flex;align-items:center;justify-content:center;flex:none;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6e8a6c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="8 7 4 12 8 17"/><polyline points="16 7 20 12 16 17"/>
+              </svg>
+            </span>
+            <div>
+              <div style="font:700 15px/1.1 Pretendard,sans-serif;color:#2f2c27;">프로그래밍 언어</div>
+              <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;margin-top:3px;">Languages</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Python</span>
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Go</span>
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Java</span>
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Bash</span>
+          </div>
+          <div style="height:5px;border-radius:3px;background:#e7e3db;overflow:hidden;margin-top:auto;">
+            <div style="width:70%;height:100%;background:linear-gradient(90deg,#a9bfa8,#8fa68e);border-radius:3px;"></div>
+          </div>
+        </div>
+        <!-- Collaboration -->
+        <div class="card-hover" style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+          <div style="display:flex;align-items:center;gap:11px;">
+            <span style="width:36px;height:36px;border-radius:9px;background:#ece9e3;border:1px solid #dcd7cf;display:flex;align-items:center;justify-content:center;flex:none;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6e8a6c" stroke-width="1.7">
+                <rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="5" height="8" rx="1"/>
+              </svg>
+            </span>
+            <div>
+              <div style="font:700 15px/1.1 Pretendard,sans-serif;color:#2f2c27;">협업 · 도구</div>
+              <div style="font:500 11px/1 'JetBrains Mono',monospace;color:#8a857c;margin-top:3px;">Collaboration</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Google Workspace</span>
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Redmine</span>
+            <span class="pill" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:999px;padding:7px 11px;background:#ece9e3;">Jira</span>
+          </div>
+          <div style="height:5px;border-radius:3px;background:#e7e3db;overflow:hidden;margin-top:auto;">
+            <div style="width:78%;height:100%;background:linear-gradient(90deg,#a9bfa8,#8fa68e);border-radius:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 02: CAREER ============ -->
+  <section style="margin-top:48px;">
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 22px;">
+      <span style="font:600 13px/1 'JetBrains Mono',monospace;color:#6e8a6c;">02</span>
+      <h2 style="margin:0;font:700 clamp(22px,3.5vw,30px)/1.1 Pretendard,sans-serif;letter-spacing:-.01em;color:#2f2c27;">경력</h2>
+      <span style="font:500 14px/1 'JetBrains Mono',monospace;color:#8a857c;">Career</span>
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,#d2ccc2,transparent);min-width:40px;"></span>
+    </div>
+    <div style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:16px;padding:24px;box-shadow:0 1px 2px rgba(60,55,48,.04),0 14px 30px -20px rgba(60,55,48,.2);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid #e2ddd5;">
+        <div>
+          <div style="font:700 20px/1.2 Pretendard,sans-serif;color:#2f2c27;">㈜ 와치텍 <span style="font:500 14px/1 'JetBrains Mono',monospace;color:#8a857c;">WATCHTEC</span></div>
+          <div style="margin-top:7px;font:500 13px/1.4 Pretendard,sans-serif;color:#7a756c;">대리 · 기술지원 APM파트 파트장 <span style="color:#a39d92;">/ Assistant Manager · APM Support Part Lead</span></div>
+        </div>
+        <span style="display:inline-flex;align-items:center;gap:7px;font:500 12px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;background:rgba(143,166,142,.14);border-radius:8px;padding:8px 12px;white-space:nowrap;">3년 5개월 · 3y 5m</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin-top:18px;">
+        <div style="background:#ece9e3;border:1px solid #e2ddd5;border-radius:10px;padding:12px 14px;">
+          <div style="font:700 18px/1 Pretendard,sans-serif;color:#6e8a6c;">BMT/POC</div>
+          <div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:6px;">컨설팅 · consulting</div>
+        </div>
+        <div style="background:#ece9e3;border:1px solid #e2ddd5;border-radius:10px;padding:12px 14px;">
+          <div style="font:700 18px/1 Pretendard,sans-serif;color:#6e8a6c;">Build→Ops</div>
+          <div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:6px;">구축·배포·운영</div>
+        </div>
+        <div style="background:#ece9e3;border:1px solid #e2ddd5;border-radius:10px;padding:12px 14px;">
+          <div style="font:700 18px/1 Pretendard,sans-serif;color:#6e8a6c;">QA</div>
+          <div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:6px;">품질관리 · quality</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:18px;">
+        <div style="display:flex;gap:14px;">
+          <span style="flex:none;width:9px;height:9px;border-radius:50%;background:#8fa68e;margin-top:6px;box-shadow:0 0 0 4px rgba(143,166,142,.16);"></span>
+          <div>
+            <div style="font:600 15px/1.45 Pretendard,sans-serif;color:#3b3833;">IT 인프라 자원 모니터링 체계 구축 컨설팅 <span style="font:500 12px/1 'JetBrains Mono',monospace;color:#a39d92;">(BMT / POC)</span></div>
+            <div style="margin-top:3px;font:400 13px/1.5 Pretendard,sans-serif;color:#7a756c;">Infrastructure resource monitoring consulting — benchmark &amp; proof-of-concept design.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;">
+          <span style="flex:none;width:9px;height:9px;border-radius:50%;background:#8fa68e;margin-top:6px;box-shadow:0 0 0 4px rgba(143,166,142,.16);"></span>
+          <div>
+            <div style="font:600 15px/1.45 Pretendard,sans-serif;color:#3b3833;">솔루션 구축 · 배포 및 유지보수</div>
+            <div style="margin-top:3px;font:400 13px/1.5 Pretendard,sans-serif;color:#7a756c;">End-to-end solution build, deployment and maintenance.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;">
+          <span style="flex:none;width:9px;height:9px;border-radius:50%;background:#8fa68e;margin-top:6px;box-shadow:0 0 0 4px rgba(143,166,142,.16);"></span>
+          <div>
+            <div style="font:600 15px/1.45 Pretendard,sans-serif;color:#3b3833;">솔루션 품질관리 (QA)</div>
+            <div style="margin-top:3px;font:400 13px/1.5 Pretendard,sans-serif;color:#7a756c;">TC 정의 · 정규 테스트 · 기능 로직 검토 · 개발 기획 / Test-case design, regression, logic review &amp; planning.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 03: PORTFOLIO ============ -->
+  <section style="margin-top:48px;">
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 8px;">
+      <span style="font:600 13px/1 'JetBrains Mono',monospace;color:#6e8a6c;">03</span>
+      <h2 style="margin:0;font:700 clamp(22px,3.5vw,30px)/1.1 Pretendard,sans-serif;letter-spacing:-.01em;color:#2f2c27;">포토폴리오</h2>
+      <span style="font:500 14px/1 'JetBrains Mono',monospace;color:#8a857c;">Portfolio</span>
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,#d2ccc2,transparent);min-width:40px;"></span>
+    </div>
+    <div style="font:500 12px/1.5 'JetBrains Mono',monospace;color:#a39d92;margin-bottom:20px;">// case-study cards — replace with your real projects</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;">
+
+      <!-- CASE 01 -->
+      <div class="proj-card" style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="height:140px;background:repeating-linear-gradient(135deg,#e6e2da,#e6e2da 9px,#efece6 9px,#efece6 18px);display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid #dcd7cf;">
+          <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#a39d92;letter-spacing:.1em;">DASHBOARD SCREENSHOT</span>
+          <span style="position:absolute;top:11px;left:11px;font:600 10px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;background:rgba(143,166,142,.14);border-radius:5px;padding:4px 7px;">CASE 01</span>
+        </div>
+        <div style="padding:18px;display:flex;flex-direction:column;gap:11px;flex:1;">
+          <div style="font:700 16px/1.3 Pretendard,sans-serif;color:#2f2c27;">모니터링 대시보드 구축</div>
+          <p style="margin:0;font:400 13px/1.55 Pretendard,sans-serif;color:#7a756c;">프로젝트 개요를 여기에 작성하세요. 문제 → 접근 → 결과.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#7a756c;border:1px solid #dcd7cf;border-radius:6px;padding:5px 8px;">Grafana</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#7a756c;border:1px solid #dcd7cf;border-radius:6px;padding:5px 8px;">Prometheus</span>
+          </div>
+          <div style="display:flex;gap:16px;padding-top:11px;border-top:1px solid #e2ddd5;">
+            <div><div style="font:700 17px/1 Pretendard,sans-serif;color:#6e8a6c;">−40%</div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:4px;">MTTR</div></div>
+            <div><div style="font:700 17px/1 Pretendard,sans-serif;color:#6e8a6c;">12</div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:4px;">nodes</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 02 -->
+      <div class="proj-card" style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="height:140px;background:repeating-linear-gradient(135deg,#e6e2da,#e6e2da 9px,#efece6 9px,#efece6 18px);display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid #dcd7cf;">
+          <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#a39d92;letter-spacing:.1em;">ARCHITECTURE DIAGRAM</span>
+          <span style="position:absolute;top:11px;left:11px;font:600 10px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;background:rgba(143,166,142,.14);border-radius:5px;padding:4px 7px;">CASE 02</span>
+        </div>
+        <div style="padding:18px;display:flex;flex-direction:column;gap:11px;flex:1;">
+          <div style="font:700 16px/1.3 Pretendard,sans-serif;color:#2f2c27;">로그 파이프라인 설계</div>
+          <p style="margin:0;font:400 13px/1.55 Pretendard,sans-serif;color:#7a756c;">프로젝트 개요를 여기에 작성하세요. 규모, 역할, 기술 선택 근거.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#7a756c;border:1px solid #dcd7cf;border-radius:6px;padding:5px 8px;">Kafka</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#7a756c;border:1px solid #dcd7cf;border-radius:6px;padding:5px 8px;">Logstash</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#7a756c;border:1px solid #dcd7cf;border-radius:6px;padding:5px 8px;">OpenSearch</span>
+          </div>
+          <div style="display:flex;gap:16px;padding-top:11px;border-top:1px solid #e2ddd5;">
+            <div><div style="font:700 17px/1 Pretendard,sans-serif;color:#6e8a6c;">5M+</div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:4px;">logs/day</div></div>
+            <div><div style="font:700 17px/1 Pretendard,sans-serif;color:#6e8a6c;">99.9%</div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:4px;">uptime</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 03 -->
+      <div class="proj-card" style="background:#f4f2ee;border:1px solid #dcd7cf;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(60,55,48,.04),0 12px 26px -18px rgba(60,55,48,.18);">
+        <div style="height:140px;background:repeating-linear-gradient(135deg,#e6e2da,#e6e2da 9px,#efece6 9px,#efece6 18px);display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid #dcd7cf;">
+          <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#a39d92;letter-spacing:.1em;">PROJECT IMAGE</span>
+          <span style="position:absolute;top:11px;left:11px;font:600 10px/1 'JetBrains Mono',monospace;color:#6e8a6c;border:1px solid #b9cdb7;background:rgba(143,166,142,.14);border-radius:5px;padding:4px 7px;">CASE 03</span>
+        </div>
+        <div style="padding:18px;display:flex;flex-direction:column;gap:11px;flex:1;">
+          <div style="font:700 16px/1.3 Pretendard,sans-serif;color:#2f2c27;">컨테이너 오케스트레이션</div>
+          <p style="margin:0;font:400 13px/1.55 Pretendard,sans-serif;color:#7a756c;">프로젝트 개요를 여기에 작성하세요. 결과를 숫자로 요약.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;">
+            <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#7a756c;border:1px solid #dcd7cf;border-radius:6px;padding:5px 8px;">Kubernetes</span>
+            <span style="font:500 11px/1 'JetBrains Mono',monospace;color:#7a756c;border:1px solid #dcd7cf;border-radius:6px;padding:5px 8px;">Docker</span>
+          </div>
+          <div style="display:flex;gap:16px;padding-top:11px;border-top:1px solid #e2ddd5;">
+            <div><div style="font:700 17px/1 Pretendard,sans-serif;color:#6e8a6c;">×3</div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:4px;">scale</div></div>
+            <div><div style="font:700 17px/1 Pretendard,sans-serif;color:#6e8a6c;">−60%</div><div style="font:500 10px/1 'JetBrains Mono',monospace;color:#a39d92;margin-top:4px;">deploy time</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="margin-top:56px;padding-top:24px;border-top:1px solid #e2ddd5;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="font:500 12px/1.6 'JetBrains Mono',monospace;color:#a39d92;">© 2026 김승은 · Seungeun Kim<br>IT Engineer CV</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="mailto:jcqwhat@gmail.com" class="link-chip" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:8px;padding:9px 13px;background:#ece9e3;">✉ jcqwhat@gmail.com</a>
+      <a href="https://github.com/ksewhat" target="_blank" rel="noopener" class="link-chip" style="font:500 12px/1 'JetBrains Mono',monospace;color:#5b574f;border:1px solid #dcd7cf;border-radius:8px;padding:9px 13px;background:#ece9e3;">⌥ github.com/ksewhat</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// Live KST clock
+(function () {
+  var el = document.getElementById('kst-clock');
+  function tick() {
+    try {
+      el.textContent = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Seoul', hour12: false });
+    } catch (e) {}
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// Activity heatmap — deterministic pseudo-random, sage green scale
+(function () {
+  var colors = ['#e3ded5', '#cdd9c8', '#b3c9ad', '#97b691', '#7ba074'];
+  function lvl(i) {
+    var r = ((i * 1103515245 + 12345) >>> 8) % 100;
+    var v = r + (i > 60 ? 12 : 0);
+    return v < 34 ? 0 : v < 55 ? 1 : v < 74 ? 2 : v < 90 ? 3 : 4;
+  }
+  var grid = document.getElementById('heatmap');
+  for (var i = 0; i < 77; i++) {
+    var cell = document.createElement('div');
+    cell.style.cssText = 'border-radius:2px;background:' + colors[lvl(i)];
+    grid.appendChild(cell);
+  }
+})();
+</script>
+</body>
+</html>
